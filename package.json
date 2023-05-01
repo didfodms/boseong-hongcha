@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@marp-team/marpit": "^2.4.2",
+    "openai": "^3.2.1"
+  }
+}
