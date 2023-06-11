@@ -2,6 +2,10 @@ var express = require("express");
 var router = express.Router();
 require("dotenv").config({ path: "./.env" });
 
+/* For Marpit */
+const fs = require("fs");
+const marpit = require("@marp-team/marpit");
+
 const { Configuration, OpenAIApi } = require("openai");
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
@@ -18,10 +22,10 @@ const chatGPT = async (prompt) => {
                   제가 드리는 주제에 적절한 제목 표지, 목차, 내용들을 생성하여 한 슬라이드씩 markdown 단락을 생성해주세요.
                   각 슬라이드 단락은 ---로 구분합니다.
                   참고로 제목 표지 슬라이드에는 적절한 제목을 설정하셔야 합니다.
-                  
+
                   예시)
                   주제 : 효율적인 이슈 관리 방법
-                  당신의 응답 : 
+                  당신의 응답 :
                   # 효율적인 이슈 관리 방법
                   ---
                   ## 목차
@@ -72,6 +76,53 @@ router.post("/subject", async (req, res, next) => {
 });
 
 // 다희언니 부분
-router.post("/createPPT", async (req, res, next) => {});
+
+/* 테마선택 --> 의지니 코드가 길면 따로 뺄게요 */
+const availableThemes = {
+  default: marpit.defaultTheme,
+  customTheme1: `
+    /* Custom Theme 1 CSS */
+  `,
+  customTheme2: `
+    /* Custom Theme 2 CSS */
+  `,
+  // 추가적인 테마들...
+};
+
+
+router.post("/createPPT", async (req, res, next) => {
+  const body = req.body;
+  const response = body.chatGPT; // ChatGPT 응답을 받아옵니다.
+  const selectedTheme = body.theme; // 사용자가 선택한 테마로 지정합니다.
+
+  // Markdown 생성
+  const markdown =
+  `
+  ---
+  theme: default
+  paginate: true
+  ---
+
+  ${response}
+  `;
+
+  // Marpit 인스턴스 생성 및 테마 추가
+  const marpit = new Marpit();
+  Object.entries(availableThemes).forEach(([name, theme]) => {
+    marpit.themeSet.default = marpit.themeSet.add(theme);
+  });
+
+  // PPT로 변환
+  const { html } = marpit.render(markdown);
+
+  // PPT 파일 저장
+  const pptFilePath = "./output.pptx";
+  fs.writeFileSync(pptFilePath, html, "utf8");
+
+  res.download(pptFilePath, "output.pptx", (err) => {
+    // 다운로드 후 임시 파일 삭제
+    fs.unlinkSync(pptFilePath);
+  });
+});
 
 module.exports = router;
