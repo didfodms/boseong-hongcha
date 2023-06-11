@@ -4,11 +4,9 @@ const db = require("../db");
 
 /* GET users listing. */
 router.get("/", function (req, res, next) {
-  if (!req.session.is_logined) {
-    res.render("login", {
-      session: req.session,
-    });
-  }
+  res.render("login", {
+    session: req.session,
+  });
 });
 
 router.post("/", async (req, res, next) => {
@@ -16,11 +14,8 @@ router.post("/", async (req, res, next) => {
   const nickname = body.loginNickname;
   const password = body.loginPassword;
 
-  console.log("nickname", nickname);
-  console.log("password", password);
-
   const checkNicknameSQL = `SELECT * FROM user_table
-                            WHERE UserEmail = '${nickname}' AND UserPW = '${password}'`;
+                            WHERE UserNAME = '${nickname}' AND UserPW = '${password}'`;
 
   let user;
   const login_flag = await new Promise((resolve, reject) => {
