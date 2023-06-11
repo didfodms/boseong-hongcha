@@ -184,11 +184,55 @@
         <div class="contact-us-bgimage grid-margin" >
           <div class="pb-4">
             <h4 class="px-3 px-md-0 m-0" data-aos="fade-down">Do you have any projects?</h4>
-            <h4 class="pt-1" data-aos="fade-down">Contact us</h4>
+            <div>주제 : <input id="subjectInput" name="subject" type="text"></div>
+            <!-- <h4 class="pt-1" data-aos="fade-down">Contact Us</h4> -->
           </div>
           <div data-aos="fade-up">
-            <button class="btn btn-rounded btn-outline-danger">Contact us</button>
-          </div>          
+            <button id="subjectInputBtn" class="btn btn-rounded btn-outline-danger">시작!</button>
+          </div>
+          <textarea id="resultArea"></textarea>
+          <div data-aos="fade-up">
+            <button id="editCompleteBtn" class="btn btn-rounded btn-outline-success">완료!</button>
+          </div>
+
+          </div>
+          
+          <script>
+            const subjectInputEl = document.querySelector('#subjectInput');
+            const subjectInputBtnEl = document.querySelector('#subjectInputBtn');
+            const resultAreaEl = document.querySelector('#resultArea')
+            const editCompleteBtnEl = document.querySelector('#editCompleteBtn');
+            editCompleteBtnEl.setAttribute('disabled', '');
+          
+            subjectInputBtnEl.addEventListener('click', function() {
+              fetch('/subject', {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                  subject : subjectInputEl.value
+                }),
+              }).then((res) => res.json()).then((data) => {
+                resultAreaEl.value = data.chatGPT;
+                editCompleteBtnEl.setAttribute('disabled', 'disabled');
+              });
+            });
+
+            editCompleteBtnEl.addEventListener('click', function() {
+              fetch('/createPPT', {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                  content : resultAreaEl.value
+                }),
+              }).then((res) => res.json()).then((data)=> {
+                
+              })
+            })
+          </script>
         </div>
       </section>
       <section class="contact-details" id="contact-details-section">
