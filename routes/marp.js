@@ -22,7 +22,7 @@ h2 {
 }
 
 h1 {
-  color: #8cf;
+  color: #fff;
 }
 `;
 marpit.themeSet.default = marpit.themeSet.add(theme);
@@ -113,3 +113,7 @@ const htmlFile = `
 `;
 
 fs.writeFileSync("example.html", htmlFile.trim());
+fs.writeFileSync("example2.html", htmlFile.trim());
+fs.writeFileSync("example3.html", htmlFile.trim());
+fs.writeFileSync("example4.html", htmlFile.trim());
+fs.writeFileSync("example5.html", htmlFile.trim());
