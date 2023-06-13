@@ -4,7 +4,7 @@ require("dotenv").config({ path: "./.env" });
 
 /* For Marpit */
 const fs = require("fs");
-const marpit = require("@marp-team/marpit");
+const { Marpit } = require("@marp-team/marpit");
 const path = require("path");
 
 const { Configuration, OpenAIApi } = require("openai");
@@ -94,12 +94,12 @@ router.post("/subject", async (req, res, next) => {
 // };
 
 const availableThemes = {
-  default: marpit.defaultTheme,
-  customTheme1: "pulic/theme/sample1.css",
-  customTheme2: "pulic/theme/sample2.css",
-  customTheme3: "pulic/theme/sample3.css",
-  customTheme4: "pulic/theme/sample4.css",
-  customTheme5: "pulic/theme/sample5.css",
+  default: Marpit.defaultTheme,
+  customTheme1: "public/theme/sample.css",
+  customTheme2: "public/theme/sample2.css",
+  customTheme3: "public/theme/sample3.css",
+  customTheme4: "public/theme/sample4.css",
+  customTheme5: "public/theme/sample5.css",
 };
 
 
@@ -130,18 +130,24 @@ router.post("/createPPT", async (req, res, next) => {
     marpit.themeSet.default = marpit.defaultTheme;
   }
 
+  const { html, css } = marpit.render(markdown);
 
-  // PPT로 변환
-  const { html } = marpit.render(markdown);
+  // 4. Use output in your HTML
+  const htmlFile = `
+  <!DOCTYPE html>
+  <html><body>
+    <style>${css}</style>
+    ${html}
+  </body></html>
+  `;
 
-  // PPT 파일 저장
-  const pptFilePath = path.join(__dirname, "..", "output.pptx");
-  fs.writeFileSync(pptFilePath, html, "utf8");
+  fs.writeFileSync("example.html", htmlFile.trim());
+  // const pptFilePath = "example.html";
 
-  res.download(pptFilePath, "output.pptx", (err) => {
-    // 다운로드 후 임시 파일 삭제
-    fs.unlinkSync(pptFilePath);
-  });
+  // res.download(pptFilePath, "example.html", (err) => {
+  //   // 다운로드 후 임시 파일 삭제
+  //   fs.unlinkSync(pptFilePath);
+  // });
 });
 
 module.exports = router;
