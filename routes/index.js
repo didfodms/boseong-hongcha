@@ -5,6 +5,7 @@ require("dotenv").config({ path: "./.env" });
 /* For Marpit */
 const fs = require("fs");
 const marpit = require("@marp-team/marpit");
+const path = require("path");
 
 const { Configuration, OpenAIApi } = require("openai");
 const configuration = new Configuration({
@@ -75,20 +76,30 @@ router.post("/subject", async (req, res, next) => {
   });
 });
 
-// 다희언니 부분
-
 /* 테마선택 */
+// const availableThemes = {
+//   default: marpit.defaultTheme,
+//   // customTheme1: `
+//   //   /* Custom Theme 1 CSS */
+//   // `,
+//   // customTheme2: `
+//   //   /* Custom Theme 2 CSS */
+//   // `,
+//   customTheme1: fs.readFileSync("폴더/sample1.css", "utf8"),
+//   customTheme2: fs.readFileSync("폴더/sample2.css", "utf8"),
+//   customTheme3: fs.readFileSync("폴더/sample3.css", "utf8"),
+//   customTheme4: fs.readFileSync("폴더/sample4.css", "utf8"),
+//   customTheme5: fs.readFileSync("폴더/sample5.css", "utf8"),
+
+// };
+
 const availableThemes = {
   default: marpit.defaultTheme,
-  customTheme1: `
-    /* Custom Theme 1 CSS */
-  `,
-  customTheme2: `
-    /* Custom Theme 2 CSS */
-  `,
-  // or 파일읽기
-  // customTheme1: fs.readFileSync("폴더/customTheme1.css", "utf8"),
-  // customTheme2: fs.readFileSync("폴더/customTheme2.css", "utf8"),
+  customTheme1: "pulic/theme/sample1.css",
+  customTheme2: "pulic/theme/sample2.css",
+  customTheme3: "pulic/theme/sample3.css",
+  customTheme4: "pulic/theme/sample4.css",
+  customTheme5: "pulic/theme/sample5.css",
 };
 
 
@@ -110,19 +121,21 @@ router.post("/createPPT", async (req, res, next) => {
 
   // Marpit 인스턴스 생성 및 테마 추가
   const marpit = new Marpit();
-  // Object.entries(availableThemes).forEach(([name, theme]) => {
-  //   marpit.themeSet.default = marpit.themeSet.add(theme);
-  // });
-  marpitInstance.themeSet.default = marpitInstance.themeSet.add(
-    availableThemes[selectedTheme]
-  );
+  const selectedThemeCSS = availableThemes[selectedTheme];
+  if (selectedThemeCSS) {
+    marpit.themeSet.default = marpit.themeSet.add(
+      fs.readFileSync(selectedThemeCSS, "utf8")
+    );
+  } else {
+    marpit.themeSet.default = marpit.defaultTheme;
+  }
 
 
   // PPT로 변환
   const { html } = marpit.render(markdown);
 
   // PPT 파일 저장
-  const pptFilePath = "./output.pptx";
+  const pptFilePath = path.join(__dirname, "..", "output.pptx");
   fs.writeFileSync(pptFilePath, html, "utf8");
 
   res.download(pptFilePath, "output.pptx", (err) => {
