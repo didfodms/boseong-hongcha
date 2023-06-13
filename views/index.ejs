@@ -212,8 +212,8 @@
             const subjectInputEl = document.querySelector('#subjectInput');
             const subjectInputBtnEl = document.querySelector('#subjectInputBtn');
             const resultAreaEl = document.querySelector('#resultArea')
-            const editCompleteBtnEl = document.querySelector('#editCompleteBtn');
-            editCompleteBtnEl.setAttribute('disabled', '');
+            // const editCompleteBtnEl = document.querySelector('#editCompleteBtn');
+            // editCompleteBtnEl.setAttribute('disabled', '');
 
             subjectInputBtnEl.addEventListener('click', function() {
               fetch('/subject', {
@@ -226,7 +226,7 @@
                 }),
               }).then((res) => res.json()).then((data) => {
                 resultAreaEl.value = data.chatGPT;
-                editCompleteBtnEl.setAttribute('disabled', 'disabled');
+                // editCompleteBtnEl.setAttribute('disabled', 'disabled');
               });
             });
 
