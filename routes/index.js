@@ -76,23 +76,6 @@ router.post("/subject", async (req, res, next) => {
   });
 });
 
-/* 테마선택 */
-// const availableThemes = {
-//   default: marpit.defaultTheme,
-//   // customTheme1: `
-//   //   /* Custom Theme 1 CSS */
-//   // `,
-//   // customTheme2: `
-//   //   /* Custom Theme 2 CSS */
-//   // `,
-//   customTheme1: fs.readFileSync("폴더/sample1.css", "utf8"),
-//   customTheme2: fs.readFileSync("폴더/sample2.css", "utf8"),
-//   customTheme3: fs.readFileSync("폴더/sample3.css", "utf8"),
-//   customTheme4: fs.readFileSync("폴더/sample4.css", "utf8"),
-//   customTheme5: fs.readFileSync("폴더/sample5.css", "utf8"),
-
-// };
-
 const availableThemes = {
   default: Marpit.defaultTheme,
   customTheme1: "public/theme/sample.css",
@@ -100,8 +83,8 @@ const availableThemes = {
   customTheme3: "public/theme/sample3.css",
   customTheme4: "public/theme/sample4.css",
   customTheme5: "public/theme/sample5.css",
-  customTheme5: "public/theme/sample6.css",
-  customTheme5: "public/theme/sample7.css",
+  customTheme6: "public/theme/sample6.css",
+  customTheme7: "public/theme/sample7.css",
 };
 
 
@@ -139,12 +122,6 @@ router.post("/createPPT", async (req, res, next) => {
   `;
 
   fs.writeFileSync("example.html", htmlFile.trim());
-  // const pptFilePath = "example.html";
-
-  // res.download(pptFilePath, "example.html", (err) => {
-  //   // 다운로드 후 임시 파일 삭제
-  //   fs.unlinkSync(pptFilePath);
-  // });
 });
 
 module.exports = router;
