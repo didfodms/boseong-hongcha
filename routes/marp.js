@@ -21,11 +21,11 @@
 //   margin: 0;
 // }
 
-// h1 {
-//   color: #8cf;
-// }
-// `;
-// marpit.themeSet.default = marpit.themeSet.add(theme);
+h1 {
+  color: #fff;
+}
+`;
+marpit.themeSet.default = marpit.themeSet.add(theme);
 
 // // 3. Render markdown
 // const markdown = `# 오픈소스 개발방법론
@@ -112,4 +112,8 @@
 // </body></html>
 // `;
 
-// fs.writeFileSync("example.html", htmlFile.trim());
+fs.writeFileSync("example.html", htmlFile.trim());
+fs.writeFileSync("example2.html", htmlFile.trim());
+fs.writeFileSync("example3.html", htmlFile.trim());
+fs.writeFileSync("example4.html", htmlFile.trim());
+fs.writeFileSync("example5.html", htmlFile.trim());
