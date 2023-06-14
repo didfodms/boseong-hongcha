@@ -111,11 +111,6 @@ router.post("/createPPT", async (req, res, next) => {
   // Markdown 생성
   const markdown =
   `
-  ---
-  theme: default
-  paginate: true
-  ---
-
   ${response}
   `;
 
