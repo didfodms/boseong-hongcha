@@ -25,6 +25,133 @@ h1 {
   color: #fff;
 }
 `;
+
+const theme2 = `
+/* @theme example */
+
+section {
+  background-color: #ef5350;
+  color: #fff;
+  font-size: 30px;
+  padding: 40px;
+}
+
+h1,
+h2 {
+  text-align: center;
+  margin: 0;
+}
+
+h1 {
+  color: #fff;
+}
+`;
+
+const theme3 = `
+/* @theme example */
+
+section {
+  background-color: #ffde03;
+  color: #fff;
+  font-size: 30px;
+  padding: 40px;
+}
+
+h1,
+h2 {
+  text-align: center;
+  margin: 0;
+}
+
+h1 {
+  color: #fff;
+}
+`;
+
+const theme4 = `
+/* @theme example */
+
+section {
+  background-color: #d1c4e9;
+  color: #fff;
+  font-size: 30px;
+  padding: 40px;
+}
+
+h1,
+h2 {
+  text-align: center;
+  margin: 0;
+}
+
+h1 {
+  color: #fff;
+}
+`;
+
+const theme5 = `
+/* @theme example */
+
+section {
+  background-color: #388e3c;
+  color: #fff;
+  font-size: 30px;
+  padding: 40px;
+}
+
+h1,
+h2 {
+  text-align: center;
+  margin: 0;
+}
+
+h1 {
+  color: #fff;
+}
+`;
+
+const theme6 = `
+/* @theme example */
+
+section {
+  background-color: #FFCDD2;
+  color: #fff;
+  font-size: 30px;
+  padding: 40px;
+}
+
+h1,
+h2 {
+  text-align: center;
+  margin: 0;
+}
+
+h1 {
+  color: #fff;
+}
+`;
+
+const theme7 = `
+/* @theme example */
+
+section {
+  background-color: #BCAAA4;
+  color: #fff;
+  font-size: 30px;
+  padding: 40px;
+}
+
+h1,
+h2 {
+  text-align: center;
+  margin: 0;
+}
+
+h1 {
+  color: #fff;
+}
+`;
+
 marpit.themeSet.default = marpit.themeSet.add(theme);
 
 // 3. Render markdown
