@@ -2,6 +2,11 @@ var express = require("express");
 var router = express.Router();
 require("dotenv").config({ path: "./.env" });
 
+/* For Marpit */
+const fs = require("fs");
+const { Marpit } = require("@marp-team/marpit");
+const path = require("path");
+
 const { Configuration, OpenAIApi } = require("openai");
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
@@ -18,10 +23,10 @@ const chatGPT = async (prompt) => {
                   제가 드리는 주제에 적절한 제목 표지, 목차, 내용들을 생성하여 한 슬라이드씩 markdown 단락을 생성해주세요.
                   각 슬라이드 단락은 ---로 구분합니다.
                   참고로 제목 표지 슬라이드에는 적절한 제목을 설정하셔야 합니다.
-                  
+
                   예시)
                   주제 : 효율적인 이슈 관리 방법
-                  당신의 응답 : 
+                  당신의 응답 :
                   # 효율적인 이슈 관리 방법
                   ---
                   ## 목차
@@ -71,7 +76,52 @@ router.post("/subject", async (req, res, next) => {
   });
 });
 
-// 다희언니 부분
-router.post("/createPPT", async (req, res, next) => {});
+const availableThemes = {
+  default: Marpit.defaultTheme,
+  customTheme1: "public/theme/sample.css",
+  customTheme2: "public/theme/sample2.css",
+  customTheme3: "public/theme/sample3.css",
+  customTheme4: "public/theme/sample4.css",
+  customTheme5: "public/theme/sample5.css",
+  customTheme6: "public/theme/sample6.css",
+  customTheme7: "public/theme/sample7.css",
+};
+
+
+router.post("/createPPT", async (req, res, next) => {
+  const body = req.body;
+  const response = body.chatGPT; // ChatGPT 응답을 받아옵니다.
+  const selectedTheme = body.theme; // 사용자가 선택한 테마로 지정합니다.
+
+  // Markdown 생성
+  const markdown =
+  `
+  ${response}
+  `;
+
+  // Marpit 인스턴스 생성 및 테마 추가
+  const marpit = new Marpit();
+  const selectedThemeCSS = availableThemes[selectedTheme];
+  if (selectedThemeCSS) {
+    marpit.themeSet.default = marpit.themeSet.add(
+      fs.readFileSync(selectedThemeCSS, "utf8")
+    );
+  } else {
+    marpit.themeSet.default = marpit.defaultTheme;
+  }
+
+  const { html, css } = marpit.render(markdown);
+
+  // 4. Use output in your HTML
+  const htmlFile = `
+  <!DOCTYPE html>
+  <html><body>
+    <style>${css}</style>
+    ${html}
+  </body></html>
+  `;
+
+  fs.writeFileSync("example.html", htmlFile.trim());
+});
 
 module.exports = router;

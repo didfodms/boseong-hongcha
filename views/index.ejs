@@ -19,7 +19,7 @@
         <img src="main-template/images/Group2.svg" alt="">
         <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="mdi mdi-menu navbar-toggler-icon"></span>
-        </button> 
+        </button>
       </div>
       <div class="collapse navbar-collapse navbar-menu-wrapper" id="navbarSupportedContent">
         <ul class="navbar-nav align-items-lg-center align-items-start ml-auto">
@@ -38,19 +38,19 @@
             <a class="nav-link" href="#features-section">About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#digital-marketing-section">EXAMPLES</a>  
+            <a class="nav-link" href="#digital-marketing-section">EXAMPLES</a>
           </li>
           <li class="nav-item btn-contact-us pl-4 pl-lg-0">
             <% if(!session.is_logined) {%>
-            <a class="nav-link" href="/login">Log in</a>  
+            <a class="nav-link" href="/login">Log in</a>
             <% } else {%>
-              <a class="nav-link" href="/logout">Log out</a>  
+              <a class="nav-link" href="/logout">Log out</a>
               <%} %>
           </li>
         </ul>
       </div>
-    </div> 
-    </nav>   
+    </div>
+    </nav>
   </header>
   <div class="banner" >
     <div class="container">
@@ -76,7 +76,7 @@
               <img src="main-template/images/ChatGPT.png" alt="" class="img-icons" style="height: 56px;">
               <h5 class="py-3">ChatGPT API</h5>
               <p class="text-muted">The OpenAI API can be applied to virtually any task that involves understanding or generating natural language, code, or images. We offer a spectrum of models with different levels of power suitable for different tasks, as well as the ability to fine-tune your own custom models. These models can be used for everything from content generation to semantic search and classification.</p>
-              <a href="https://platform.openai.com/docs/introduction"><p class="readmore-link">Readmore</p></a>  
+              <a href="https://platform.openai.com/docs/introduction"><p class="readmore-link">Readmore</p></a>
             </div>
           </div>
           <div class="grid-margin d-flex justify-content-center">
@@ -89,9 +89,9 @@
           </div>
           </div>
         </div>
-      </section>     
+      </section>
       <section class="digital-marketing-service" id="digital-marketing-section">
-      </section>     
+      </section>
       <section class="case-studies" id="case-studies-section">
         <div class="row grid-margin">
           <div class="col-12 text-center pb-5">
@@ -103,14 +103,14 @@
                 <div class="bg-primary text-center card-contents">
                   <div class="card-image">
                     <img src="main-template/images/Group95.svg" class="case-studies-card-img" alt="">
-                  </div>  
+                  </div>
                   <div class="card-desc-box d-flex align-items-center justify-content-around">
                     <div>
                       <h6 class="text-white pb-2 px-3">What is ChatGPT</h6>
                       <button class="btn btn-white">Read More</button>
                     </div>
                   </div>
-                </div>   
+                </div>
                 <div class="card-details text-center pt-4">
                     <h6 class="m-0 pb-1">What is ChatGPT</h6>
                 </div>
@@ -123,14 +123,14 @@
                 <div class="bg-warning text-center card-contents">
                   <div class="card-image">
                       <img src="main-template/images/Group108.svg" class="case-studies-card-img" alt="">
-                  </div>  
+                  </div>
                   <div class="card-desc-box d-flex align-items-center justify-content-around">
                     <div>
                       <h6 class="text-white pb-2 px-3">Test Case2</h6>
                       <button class="btn btn-white">Read More</button>
                     </div>
                   </div>
-                </div>   
+                </div>
                 <div class="card-details text-center pt-4">
                     <h6 class="m-0 pb-1">TestCase2</h6>
                 </div>
@@ -143,14 +143,14 @@
                 <div class="bg-violet text-center card-contents">
                   <div class="card-image">
                       <img src="main-template/images/Group126.svg" class="case-studies-card-img" alt="">
-                  </div>  
+                  </div>
                   <div class="card-desc-box d-flex align-items-center justify-content-around">
                     <div>
                       <h6 class="text-white pb-2 px-3">TestCase3</h6>
                       <button class="btn btn-white">Read More</button>
                     </div>
                   </div>
-                </div>   
+                </div>
                 <div class="card-details text-center pt-4">
                     <h6 class="m-0 pb-1">TestCase3</h6>
                 </div>
@@ -163,14 +163,14 @@
                 <div class="bg-success text-center card-contents">
                   <div class="card-image">
                       <img src="main-template/images/Group115.svg" class="case-studies-card-img" alt="">
-                  </div>  
+                  </div>
                   <div class="card-desc-box d-flex align-items-center justify-content-around">
                     <div>
                       <h6 class="text-white pb-2 px-3">TestCase4</h6>
                       <button class="btn btn-white">Read More</button>
                     </div>
                   </div>
-                </div>   
+                </div>
                 <div class="card-details text-center pt-4">
                     <h6 class="m-0 pb-1">TestCase4</h6>
                 </div>
@@ -178,32 +178,39 @@
             </div>
           </div>
         </div>
-      </section>     
-   
+      </section>
+
       <section class="contact-us" id="contact-section">
         <div class="contact-us-bgimage grid-margin" >
           <div class="pb-4">
             <h4 class="px-3 px-md-0 m-0" data-aos="fade-down">Do you have any projects?</h4>
             <div>주제 : <input id="subjectInput" name="subject" type="text"></div>
-            <!-- <h4 class="pt-1" data-aos="fade-down">Contact Us</h4> -->
           </div>
           <div data-aos="fade-up">
             <button id="subjectInputBtn" class="btn btn-rounded btn-outline-danger">시작!</button>
           </div>
           <textarea id="resultArea"></textarea>
-          <div data-aos="fade-up">
-            <button id="editCompleteBtn" class="btn btn-rounded btn-outline-success">완료!</button>
+          <form id="themeForm">
+            <label for="themeSelect">테마 선택:</label>
+            <select id="themeSelect" name="theme">
+              <option value="default">-</option>
+              <option value="customTheme1">커스텀 테마 1</option>
+              <option value="customTheme2">커스텀 테마 2</option>
+              <option value="customTheme2">커스텀 테마 3</option>
+              <option value="customTheme2">커스텀 테마 4</option>
+              <option value="customTheme2">커스텀 테마 5</option>
+              <option value="customTheme2">커스텀 테마 6</option>
+              <option value="customTheme2">커스텀 테마 7</option>
+            </select>
+            <button type="submit">PPT 생성</button>
+          </form>
           </div>
 
-          </div>
-          
           <script>
             const subjectInputEl = document.querySelector('#subjectInput');
             const subjectInputBtnEl = document.querySelector('#subjectInputBtn');
             const resultAreaEl = document.querySelector('#resultArea')
-            const editCompleteBtnEl = document.querySelector('#editCompleteBtn');
-            editCompleteBtnEl.setAttribute('disabled', '');
-          
+
             subjectInputBtnEl.addEventListener('click', function() {
               fetch('/subject', {
                 method: "POST",
@@ -215,23 +222,28 @@
                 }),
               }).then((res) => res.json()).then((data) => {
                 resultAreaEl.value = data.chatGPT;
-                editCompleteBtnEl.setAttribute('disabled', 'disabled');
               });
             });
 
-            editCompleteBtnEl.addEventListener('click', function() {
-              fetch('/createPPT', {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                  content : resultAreaEl.value
-                }),
-              }).then((res) => res.json()).then((data)=> {
-                
-              })
-            })
+             const themeForm = document.getElementById("themeForm");
+
+              themeForm.addEventListener("submit", async (event) => {
+                event.preventDefault();
+
+                const formData = new FormData(themeForm);
+                const selectedTheme = formData.get("theme");
+
+                const response = await fetch("/createPPT", {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify({
+                    chatGPT: resultAreaEl.value,
+                    theme: selectedTheme,
+                  }),
+                });
+              });
           </script>
         </div>
       </section>
@@ -242,7 +254,7 @@
             <div class="pt-2">
               <p class="text-muted m-0">mikayla_beer@feil.name</p>
               <p class="text-muted m-0">906-179-8309</p>
-            </div>         
+            </div>
           </div>
           <div class="col-12 col-md-6 col-lg-3 grid-margin">
             <h5 class="pb-2">Get in Touch</h5>
@@ -252,14 +264,14 @@
             </form>
             <div class="pt-3">
               <button class="btn btn-dark">Subscribe</button>
-            </div>   
+            </div>
           </div>
           <div class="col-12 col-md-6 col-lg-3 grid-margin">
             <h5 class="pb-2">Our Guidelines</h5>
-            <a href="#"><p class="m-0 pb-2">Terms</p></a>   
-            <a href="#" ><p class="m-0 pt-1 pb-2">Privacy policy</p></a> 
-            <a href="#"><p class="m-0 pt-1 pb-2">Cookie Policy</p></a> 
-            <a href="#"><p class="m-0 pt-1">Discover</p></a> 
+            <a href="#"><p class="m-0 pb-2">Terms</p></a>
+            <a href="#" ><p class="m-0 pt-1 pb-2">Privacy policy</p></a>
+            <a href="#"><p class="m-0 pt-1 pb-2">Cookie Policy</p></a>
+            <a href="#"><p class="m-0 pt-1">Discover</p></a>
           </div>
           <div class="col-12 col-md-6 col-lg-3 grid-margin">
               <h5 class="pb-2">Our address</h5>
@@ -271,7 +283,7 @@
                 <a href="#"><span class="mdi mdi-linkedin"></span></a>
               </div>
           </div>
-        </div>  
+        </div>
       </section>
       <footer class="border-top">
         <p class="text-center text-muted pt-4">Copyright © 2019<a href="https://www.bootstrapdash.com/" class="px-1">Bootstrapdash.</a>All rights reserved.</p>
@@ -306,7 +318,7 @@
           </div>
         </div>
       </div>
-    </div> 
+    </div>
   </div>
   <script src="main-template/vendors/jquery/jquery.min.js"></script>
   <script src="main-template/vendors/bootstrap/bootstrap.min.js"></script>

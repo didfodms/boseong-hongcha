@@ -7,7 +7,7 @@
     "dev": "nodemon ./bin/www"
   },
   "dependencies": {
-    "@marp-team/marpit": "^2.4.2",
+    "@marp-team/marpit": "^2.5.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "dotenv": "^16.0.3",
