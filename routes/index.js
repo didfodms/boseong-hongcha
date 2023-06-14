@@ -100,6 +100,8 @@ const availableThemes = {
   customTheme3: "public/theme/sample3.css",
   customTheme4: "public/theme/sample4.css",
   customTheme5: "public/theme/sample5.css",
+  customTheme5: "public/theme/sample6.css",
+  customTheme5: "public/theme/sample7.css",
 };
 
 
