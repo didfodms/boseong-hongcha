@@ -34,7 +34,7 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#header-section">Home <span class="sr-only">(current)</span></a>
-          </li>  
+          </li>
           <li class="nav-item">
             <a class="nav-link" href="#features-section">About</a>
           </li>
@@ -46,8 +46,8 @@
             <a class="nav-link" href="/login">Log in</a>
             <% } else {%>
               <a class="nav-link" href="/logout">Log out</a>
-              <%} %> 
-          </li> 
+              <%} %>
+          </li>
         </ul>
       </div>
     </div>
@@ -225,6 +225,7 @@
           <form id="themeForm">
             <label for="themeSelect">테마 선택:</label>
             <select id="themeSelect" name="theme">
+<<<<<<< HEAD
               <option value="default">Choose your theme</option>
               <option value="customTheme1" style="background-color: #369;">Cyan-Blue</option>
               <option value="customTheme2" style="background-color: #ef5350;">Red</option>
@@ -233,6 +234,16 @@
               <option value="customTheme5" style="background-color: #388e3c;">Green</option>
               <option value="customTheme6" style="background-color: #FFCDD2;">Pink-Red</option>
               <option value="customTheme7" style="background-color: #BCAAA4;">Ruby</option>
+=======
+              <option value="default">-</option>
+              <option value="customTheme1">커스텀 테마 1</option>
+              <option value="customTheme2">커스텀 테마 2</option>
+              <option value="customTheme2">커스텀 테마 3</option>
+              <option value="customTheme2">커스텀 테마 4</option>
+              <option value="customTheme2">커스텀 테마 5</option>
+              <option value="customTheme2">커스텀 테마 6</option>
+              <option value="customTheme2">커스텀 테마 7</option>
+>>>>>>> b3de558c058524f2b5268ebf33797cce4cdabe42
             </select>
             <button type="submit">PPT 생성</button>
           </form>
@@ -242,8 +253,6 @@
             const subjectInputEl = document.querySelector('#subjectInput');
             const subjectInputBtnEl = document.querySelector('#subjectInputBtn');
             const resultAreaEl = document.querySelector('#resultArea')
-            // const editCompleteBtnEl = document.querySelector('#editCompleteBtn');
-            // editCompleteBtnEl.setAttribute('disabled', '');
 
             subjectInputBtnEl.addEventListener('click', function() {
               fetch('/subject', {
@@ -256,23 +265,8 @@
                 }),
               }).then((res) => res.json()).then((data) => {
                 resultAreaEl.value = data.chatGPT;
-                // editCompleteBtnEl.setAttribute('disabled', 'disabled');
               });
             });
-
-            // editCompleteBtnEl.addEventListener('click', function() {
-            //   fetch('/createPPT', {
-            //     method: "POST",
-            //     headers: {
-            //       "Content-Type": "application/json",
-            //     },
-            //     body: JSON.stringify({
-            //       content : resultAreaEl.value
-            //     }),
-            //   }).then((res) => res.json()).then((data)=> {
-
-            //   })
-            // })
 
              const themeForm = document.getElementById("themeForm");
 
@@ -301,8 +295,8 @@
           <div class="col-12 col-md-6 col-lg-3 grid-margin">
             <img src="main-template/images/logo.png" alt="" class="pb-2" style="margin-left: 100px;">
           </div>
-          
-   
+
+
         </div>
       </section>
       <footer class="border-top">
