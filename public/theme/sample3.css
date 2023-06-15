@@ -1,0 +1,17 @@
+/* @theme example */
+section {
+  background-color: #ffde03;
+  color: #fff;
+  font-size: 30px;
+  padding: 40px;
+}
+
+h1,
+h2 {
+  text-align: center;
+  margin: 0;
+}
+
+h1 {
+  color: #fff;
+}
