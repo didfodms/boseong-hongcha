@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Input Page Name</title>
+  <title>AI Presentation Generator</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -181,11 +181,37 @@
       </section>
 
       <section class="contact-us" id="contact-section">
+        <style>
+          /* Hide the default dropdown arrow */
+          select {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            /* Add padding to accommodate the background color */
+            padding: 5px;
+            /* Add a border for visual clarity */
+            border: 1px solid #ccc;
+            /* Set the background color */
+            background-color: #eaeaea;
+            /* Add rounded corners */
+            border-radius: 20px;
+          }
+        
+          /* Style the dropdown arrow */
+          select::after {
+            content: '\25BC';
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            color: #555;
+          }
+        </style>
         <div class="contact-us-bgimage grid-margin" >
           <div class="pb-4">
             <h4 class="px-3 px-md-0 m-0" data-aos="fade-down">Do you have any projects?</h4>
             <br>
-            <div>주제 : <input id="subjectInput" name="subject" type="text" placeholder="OpenCV로 PPT 제작하는법"></div>
+            <div>주제 : <input id="subjectInput" name="subject" type="text" placeholder="책을 읽는 습관의 중요성과 효과"></div>
             <!-- <h4 class="pt-1" data-aos="fade-down">Contact Us</h4> -->
           </div>
           <div data-aos="fade-up">
@@ -199,6 +225,16 @@
           <form id="themeForm">
             <label for="themeSelect">테마 선택:</label>
             <select id="themeSelect" name="theme">
+<<<<<<< HEAD
+              <option value="default">Choose your theme</option>
+              <option value="customTheme1" style="background-color: #369;">Cyan-Blue</option>
+              <option value="customTheme2" style="background-color: #ef5350;">Red</option>
+              <option value="customTheme3" style="background-color: #ffde03;">Yellow</option>
+              <option value="customTheme4" style="background-color: #d1c4e9;">Blue-Magenta</option>
+              <option value="customTheme5" style="background-color: #388e3c;">Green</option>
+              <option value="customTheme6" style="background-color: #FFCDD2;">Pink-Red</option>
+              <option value="customTheme7" style="background-color: #BCAAA4;">Ruby</option>
+=======
               <option value="default">-</option>
               <option value="customTheme1">커스텀 테마 1</option>
               <option value="customTheme2">커스텀 테마 2</option>
@@ -207,6 +243,7 @@
               <option value="customTheme2">커스텀 테마 5</option>
               <option value="customTheme2">커스텀 테마 6</option>
               <option value="customTheme2">커스텀 테마 7</option>
+>>>>>>> b3de558c058524f2b5268ebf33797cce4cdabe42
             </select>
             <button type="submit">PPT 생성</button>
           </form>
