@@ -7,8 +7,6 @@ const fs = require("fs");
 const { Marpit } = require("@marp-team/marpit");
 const path = require("path");
 
-const puppeteer = require("puppeteer");
-
 const { Configuration, OpenAIApi } = require("openai");
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
@@ -69,8 +67,6 @@ router.post("/subject", async (req, res, next) => {
   const body = req.body;
   const subject = body.subject;
 
-  console.log("in subject router!");
-
   const response = await chatGPT(subject);
 
   console.log(response);
@@ -91,7 +87,7 @@ const availableThemes = {
   customTheme7: "public/theme/sample7.css",
 };
 
-router.post("/createHTML", async (req, res, next) => {
+router.post("/createPPT", async (req, res, next) => {
   const body = req.body;
   const response = body.chatGPT; // ChatGPT 응답을 받아옵니다.
   const selectedTheme = body.theme; // 사용자가 선택한 테마로 지정합니다.
@@ -123,43 +119,9 @@ router.post("/createHTML", async (req, res, next) => {
   </body></html>
   `;
 
-  fs.writeFileSync("./example.html", htmlFile.trim());
+  fs.writeFileSync("example.html", htmlFile.trim());
 
-  res.json({
-    result: "success",
-  });
-});
-
-router.post("/convertPDF", async (req, res, next) => {
-  console.log("in createPDF!");
-
-  const browser = await puppeteer.launch({ headless: "new" });
-  const page = await browser.newPage();
-
-  await page.goto("http://localhost:3000/example", {
-    waitUntil: "networkidle2",
-  });
-  const pdf = await page.pdf({ format: "A4" });
-
-  console.log("pdf : ", pdf);
-
-  await res.header("Content-Disposition", 'attachment; filename="example.pdf"');
-  await res.contentType("application/pdf");
-  await res.send(pdf);
-
-  await browser.close();
-
-  // run()
-  //   .then(() => {
-  //     res.json({
-  //       result: "success",
-  //     });
-  //   })
-  //   .catch(() => {
-  //     res.json({
-  //       result: "error",
-  //     });
-  //   });
+  await res.json({ result: "success" });
 });
 
 module.exports = router;

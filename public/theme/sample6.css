@@ -1,17 +1,18 @@
 /* @theme example */
 section {
-    background-color: #FFCDD2;
-    color: #fff;
-    font-size: 30px;
-    padding: 40px;
+  background-color: #ffcdd2;
+  color: #fff;
+  font-size: 30px;
+  padding: 40px;
+  margin: 12px;
 }
 
 h1,
 h2 {
-    text-align: center;
-    margin: 0;
+  text-align: center;
+  margin: 0;
 }
 
 h1 {
-    color: #fff;
+  color: #fff;
 }
