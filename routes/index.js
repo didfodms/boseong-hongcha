@@ -87,15 +87,13 @@ const availableThemes = {
   customTheme7: "public/theme/sample7.css",
 };
 
-
 router.post("/createPPT", async (req, res, next) => {
   const body = req.body;
   const response = body.chatGPT; // ChatGPT 응답을 받아옵니다.
   const selectedTheme = body.theme; // 사용자가 선택한 테마로 지정합니다.
 
   // Markdown 생성
-  const markdown =
-  `
+  const markdown = `
   ${response}
   `;
 
@@ -122,6 +120,8 @@ router.post("/createPPT", async (req, res, next) => {
   `;
 
   fs.writeFileSync("example.html", htmlFile.trim());
+
+  await res.json({ result: "success" });
 });
 
 module.exports = router;

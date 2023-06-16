@@ -53,6 +53,11 @@ app.use("/login", loginRouter);
 app.use("/logout", logoutRouter);
 app.use("/register", registerRouter);
 
+// example.html을 라우트로 서빙
+app.get("/example", (req, res) => {
+  res.sendFile(path.join(__dirname, "example.html"));
+});
+
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
