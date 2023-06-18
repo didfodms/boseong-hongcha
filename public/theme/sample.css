@@ -4,7 +4,8 @@ section {
   color: #fff;
   font-size: 30px;
   padding: 40px;
-  margin: 12px;
+
+  page-break-before: always;
 }
 
 h1,
