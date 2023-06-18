@@ -113,7 +113,7 @@ router.post("/createPPT", async (req, res, next) => {
   // 4. Use output in your HTML
   const htmlFile = `
   <!DOCTYPE html>
-  <html><body>
+  <html><head><meta charset="UTF-8"></head><body>
     <style>${css}</style>
     ${html}
   </body></html>
@@ -122,6 +122,78 @@ router.post("/createPPT", async (req, res, next) => {
   fs.writeFileSync("example.html", htmlFile.trim());
 
   await res.json({ result: "success" });
+});
+
+const puppeteer = require("puppeteer");
+
+router.post("/convertPDF", async (req, res, next) => {
+  const browser = await puppeteer.launch({ headless: "new" });
+  const page = await browser.newPage();
+  await page.goto("file://" + path.join(__dirname, "../example.html"), {
+    waitUntil: "networkidle0",
+  });
+  const pdf = await page.pdf({ format: "A4" });
+
+  res.contentType("application/pdf");
+  res.send(pdf);
+
+  await browser.close();
+});
+
+const PptxGenJS = require("pptxgenjs");
+const jsdom = require("jsdom");
+const { JSDOM } = jsdom;
+
+router.post("/convertPPT", async (req, res, next) => {
+  console.log("click and in router now");
+
+  fs.readFile("example.html", "utf8", (err, html) => {
+    if (err) {
+      console.error(err);
+      return;
+    }
+    const dom = new JSDOM(html);
+    const document = dom.window.document;
+
+    const pptx = new PptxGenJS();
+    const sections = document.body.querySelectorAll("section");
+    for (let section of sections) {
+      const slide = pptx.addSlide();
+
+      const h1Elements = section.querySelectorAll("h1");
+      for (let element of h1Elements) {
+        slide.addText(element.textContent, {
+          x: "0.5",
+          y: "0.5",
+          fontSize: 48,
+          bold: true,
+        });
+      }
+
+      const h2Elements = section.querySelectorAll("h2");
+      for (let element of h2Elements) {
+        slide.addText(element.textContent, {
+          x: "0.5",
+          y: "0.5",
+          fontSize: 36,
+          bold: true,
+        });
+      }
+
+      const pElements = section.querySelectorAll("p");
+      for (let element of pElements) {
+        slide.addText(element.textContent, {
+          x: "0.5",
+          y: "2",
+          fontSize: 24,
+        });
+      }
+    }
+
+    pptx.writeFile("Output.pptx").then((fileName) => {
+      res.download(fileName);
+    });
+  });
 });
 
 module.exports = router;

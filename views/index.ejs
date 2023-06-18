@@ -170,6 +170,8 @@
               <option value="customTheme7" style="background-color: #BCAAA4;">Ruby</option>
 
             </select>
+            <input id="convertPDFBtn" type="button" value="PDF 변환">
+            <input id="convertPPTBtn" type="button" value="PPT 변환">
             <button type="submit">결과 보기</button>
           </form>
           </div>
@@ -199,6 +201,44 @@
                 loadingElement.style.display = 'none';
               });;
             });
+
+            const convertPDFBtnEl = document.querySelector('#convertPDFBtn');
+            convertPDFBtnEl.addEventListener('click', () => {
+              loadingElement.style.display = 'block';
+
+              fetch('/convertPDF', {
+                method : "POST",
+                headers: {
+                  "Content-Type" : "application/json",
+                }
+              }).then((res) => res.blob()).then((blob) => {
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'boseong-hongcha.pdf';
+                a.click();
+              }).finally(() => {
+                loadingElement.style.display = 'none';
+              })
+            });
+
+            const convertPPTBtnEl = document.querySelector('#convertPPTBtn');
+            convertPPTBtnEl.addEventListener('click', () => {
+              console.log('click button');
+              fetch('/convertPPT', {
+                method : "POST",
+                headers : {
+                  "Content-Type" : "application/json",
+                }
+              }).then((res) => res.blob()).then((blob) => {
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'boseong-hongcha.ppt';
+                a.click();
+              }).finally(() => {
+              })
+            })
 
              const themeForm = document.getElementById("themeForm");
 
